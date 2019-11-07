@@ -1,0 +1,41 @@
+<meta charset="utf-8"/>
+<html>
+  <head>
+    <title>
+      KLV Online viewer
+    </title>
+    <script>
+      function myFunction()
+      {
+        var text = document.getElementById("image-file").files[0];
+        fr = new FileReader();
+        fr.onload = function (e){
+                        result = e.target.result;
+                        var str_cus = "";
+                        for (n = 0; n < result.length; ++n)
+                        {
+                            aByte = result.charCodeAt(n);
+                            byteStr = aByte.toString(16);
+                            if (byteStr.length < 2)
+                            {
+                              byteStr = "0" + byteStr;
+                            }
+                            str_cus = str_cus + byteStr + ", ";
+                        }
+                      document.getElementById("demo").innerHTML = str_cus;
+                    }
+        fr.readAsBinaryString(text);
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Command to extract klv data</h1>
+    <p>ffmpeg -re -i $file$ -map data-re -codec copy -f data $Outputfile$</p>
+    <p> Upload your file</p>
+    <form enctype="multipart/form-data" action="/upload/image" method="post">
+      <input id="image-file" type="file" />
+    </form>
+    <button onclick="myFunction()">Click me</button>
+    <p id="demo"></p>
+  </body>
+</html>

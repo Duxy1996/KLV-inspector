@@ -4,29 +4,9 @@
     <title>
       KLV Online viewer
     </title>
-    <script>
-      function myFunction()
-      {
-        var text = document.getElementById("image-file").files[0];
-        fr = new FileReader();
-        fr.onload = function (e){
-                        result = e.target.result;
-                        var str_cus = "";
-                        for (n = 0; n < result.length; ++n)
-                        {
-                            aByte = result.charCodeAt(n);
-                            byteStr = aByte.toString(16);
-                            if (byteStr.length < 2)
-                            {
-                              byteStr = "0" + byteStr;
-                            }
-                            str_cus = str_cus + byteStr + ", ";
-                        }
-                      document.getElementById("demo").innerHTML = str_cus;
-                    }
-        fr.readAsBinaryString(text);
-      }
-    </script>
+    <script src="js/index.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/resetStyle.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
   <body>
     <h1>Command to extract klv data</h1>
@@ -37,5 +17,6 @@
     </form>
     <button onclick="myFunction()">Click me</button>
     <p id="demo"></p>
+    <button onclick="analyse()">Analyse</button>
   </body>
 </html>
